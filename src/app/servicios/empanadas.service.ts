@@ -7,36 +7,34 @@ import Pedido from '../domain/pedido';
 })
 export class EmpanadasService {
 
+
   pedidos: Array<Pedido> = []
 
   idAAsignar = 0
 
-  constructor() { }
-
-
-  getEmpanadas() {
+  async getEmpanadas() {
     return [
       new Empanada('CARNE LA REINA'), new Empanada('QUESO Y CEBOLLA'), new Empanada('ROQUEFORT Y APIO'), new Empanada('HUMITA'), new Empanada('ATUN'), new Empanada('CAPRESE')
     ]
   }
 
-  crearPedido(empanadas: Array<Empanada>) {
+  async crearPedido(empanadas: Array<Empanada>) {
     const pedido = new Pedido(empanadas)
     this.asignarId(pedido)
     return pedido
   }
 
 
-  agregarPedido(pedido: Pedido) {
+  async agregarPedido(pedido: Pedido) {
     this.pedidos.push(pedido)
   }
 
-  asignarId(pedido: Pedido) {
+  async asignarId(pedido: Pedido) {
     pedido.id = this.idAAsignar
     this.idAAsignar++
   }
 
-  getPedidoById(idPedido: string) {
+  async getPedidoById(idPedido: string) {
     const idNumber = parseInt(idPedido)
     return this.pedidos.find(pedido => pedido.id === idNumber)
   }

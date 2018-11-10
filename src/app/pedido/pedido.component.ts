@@ -15,10 +15,14 @@ export class PedidoComponent implements OnInit {
   errorMenosDe4Empanadas = false
 
   constructor(private empanadasService: EmpanadasService, private router: Router) {
-    this.empanadas = empanadasService.getEmpanadas()
+    this.initialize()
   }
 
   ngOnInit() {
+  }
+
+  async initialize() {
+    this.empanadas = await this.empanadasService.getEmpanadas()
   }
 
   subirCantidad(empanada: Empanada) {
@@ -33,18 +37,18 @@ export class PedidoComponent implements OnInit {
     return empanada.cantidad === 0
   }
 
-  finalizarPedido() {
-    if(this.cantidadDeEmpanadas() >= 4 ){
-    const pedido = this.empanadasService.crearPedido(this.empanadas)
-    this.empanadasService.agregarPedido(pedido)
-    this.navegarAFinalizacionPedido(pedido.id)
+  async finalizarPedido() {
+    if (this.cantidadDeEmpanadas() >= 4) {
+      const pedido = await this.empanadasService.crearPedido(this.empanadas)
+      await this.empanadasService.agregarPedido(pedido)
+      this.navegarAFinalizacionPedido(pedido.id)
     }
-    else{
+    else {
       this.errorMenosDe4Empanadas = true
     }
   }
 
-  cantidadDeEmpanadas(){
+  cantidadDeEmpanadas() {
     const cantidadTotal = this.empanadas.map(empanada => empanada.cantidad).reduce((sum, current) => sum + current);
     return cantidadTotal
 
