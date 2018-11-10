@@ -1,0 +1,13 @@
+.margen-izquierdo {
+    margin-left: 2rem;
+    max-width: 22rem;
+    margin-bottom: 2rem;
+}
+
+.total {
+    font-weight: bold;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    margin-left: 1rem;
+}

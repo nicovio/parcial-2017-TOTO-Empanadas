@@ -1,0 +1,29 @@
+.margen-izquierdo {
+    margin-left: 2rem;
+    max-width: 22rem;
+    margin-bottom: 2rem;
+}
+
+.cantidad{
+    font-size: 1.2rem;
+    color: red;
+    font-weight: bold;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+
+.active-cyan-2 input[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid #4dd0e1;
+  box-shadow: 0 1px 0 0 #4dd0e1;
+}
+
+.active-cyan input[type=text] {
+  border-bottom: 1px solid #4dd0e1;
+  box-shadow: 0 1px 0 0 #4dd0e1;
+}
+
+.active-cyan .fa,
+.active-cyan-2 .fa {
+  color: #4dd0e1;
+}

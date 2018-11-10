@@ -1,0 +1,31 @@
+<mdb-card class="margen-izquierdo">
+  <form class="form-inline md-form form-sm active-cyan-2">
+    <input class="form-control form-control-sm mr-3 w-75" type="text" [(ngModel)]="textoBusqueda" name="textoBusqueda"
+      placeholder="Buscar" aria-label="Buscar">
+  </form>
+
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Gusto</th>
+        <th scope="col">Cantidad</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let empanada of (empanadas | buscarPorGusto: textoBusqueda)">
+        <td>{{empanada.gusto}}</td>
+        <td class="centrado">
+          <button class="fas fa-backward" (click)="bajarCantidad(empanada)" [disabled]="hayCero(empanada)"></button>
+          <span class="cantidad">{{empanada.cantidad}}</span>
+          <button class="fas fa-forward" (click)="subirCantidad(empanada)"></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</mdb-card>
+
+<div class="margen-izquierdo">
+  <button type="button" class="btn btn-primary" (click)="finalizarPedido()">Finalizar Pedido</button>
+</div>
