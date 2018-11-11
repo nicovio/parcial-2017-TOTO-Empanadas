@@ -55,6 +55,10 @@ export class PedidoComponent implements OnInit {
 
   }
 
+  resetearTextoBusqueda(){
+    this.textoBusqueda=''
+  }
+
   navegarAFinalizacionPedido(idPedido: number) {
     this.router.navigate(['pantalla-principal/finalizar-pedido', idPedido]);
   }
