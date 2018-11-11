@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmpanadasService } from '../servicios/empanadas.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import Pedido from '../domain/pedido';
+import Empanada from '../domain/empanada';
 
 @Component({
   selector: 'finalizar-pedido',
@@ -10,7 +10,7 @@ import Pedido from '../domain/pedido';
 })
 export class FinalizarPedidoComponent implements OnInit {
 
-  pedido: Pedido
+  empanadas: Array<Empanada>
   total: number
   errors = []
   idPedido: string
@@ -29,13 +29,16 @@ export class FinalizarPedidoComponent implements OnInit {
       this.idPedido = params['id']
     })
 
-    this.pedido = await this.empanadasService.getPedidoById(this.idPedido)
-    if (!this.pedido) {
+    const pedido = await this.empanadasService.getPedidoById(this.idPedido)
+    this.empanadas = pedido.empanadas.filter(empanada => empanada.cantidad > 0)
+
+    if (!pedido) {
       this.navegarAHome()
-      return
     }
 
-    this.total = this.pedido.empanadas.map(empanada => empanada.total()).reduce((sum, current) => sum + current);
+
+
+    this.total = this.empanadas.map(empanada => empanada.total()).reduce((sum, current) => sum + current);
 
   }
 

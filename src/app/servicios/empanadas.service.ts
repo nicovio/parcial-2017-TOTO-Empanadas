@@ -7,7 +7,6 @@ import Pedido from '../domain/pedido';
 })
 export class EmpanadasService {
 
-
   pedidos: Array<Pedido> = []
 
   idAAsignar = 0
